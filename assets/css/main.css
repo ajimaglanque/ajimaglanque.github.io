@@ -321,7 +321,7 @@ a:hover {
   transform: translate3d(0, 0, 0);
   /* Set your background with this */
 
-  background: #20c2ca url("images/pringles.png") bottom left;
+  background: #20c2ca url("images/pringles.webp") bottom left;
   background-repeat: repeat-x;
   height: 100%;
   left: 0;
@@ -448,7 +448,8 @@ a:hover {
   -ms-animation: overlay 1.5s 1.5s forwards;
   animation: overlay 1.5s 1.5s forwards;
   background-attachment: fixed, fixed;
-  background-image: url("images/overlay-pattern.png"), url("images/overlay.svg");
+  background-image: url("images/overlay-pattern.webp"),
+    url("images/overlay.svg");
   background-position: top left, center center;
   background-repeat: repeat, no-repeat;
   background-size: auto, cover;
