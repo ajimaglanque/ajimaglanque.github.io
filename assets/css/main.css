@@ -487,6 +487,25 @@ a:hover {
 .dp {
   width: 200px;
   height: 200px;
+  cursor: pointer;
+  -moz-transition: -moz-transform 0.2s ease-in-out;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  -ms-transition: -ms-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+}
+
+.dp:hover {
+  -moz-transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+.dp:active {
+  -moz-transform: scale(0.97);
+  -webkit-transform: scale(0.97);
+  -ms-transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 @-moz-keyframes header {
@@ -812,6 +831,83 @@ a:hover {
   display: none;
 }
 
+/* Badges */
+
+#icon-navs {
+  display: none;
+}
+
+#header.show-icons #badges {
+  display: none;
+}
+
+#header.show-icons #icon-navs {
+  display: block;
+}
+
+#header #badges {
+  margin: 1.5em 0 0 0;
+}
+
+#header #badges ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65em;
+  max-width: 34em;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#header #badges li {
+  display: inline-block;
+}
+
+/* Toggling display:none restarts CSS animations, so entrance
+   animations meant for the initial page load are disabled here —
+   otherwise every toggle click would replay a multi-second stagger. */
+#header #badges li,
+#header #icon-navs li {
+  -moz-animation: none;
+  -webkit-animation: none;
+  -ms-animation: none;
+  animation: none;
+  opacity: 1;
+}
+
+#header #badges a {
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-radius: 100%;
+  border: solid 1px #fff;
+  display: block;
+  overflow: hidden;
+  width: 4.375em;
+  height: 4.375em;
+}
+
+#header #badges a:hover {
+  border-color: #fff;
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#header #badges a:active {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+#header #badges img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Footer */
 
 #footer {
@@ -1122,6 +1218,16 @@ a:hover {
     font-size: 1em;
   }
 
+  #header #badges ul {
+    max-width: 24em;
+    gap: 0.5em;
+  }
+
+  #header #badges a {
+    width: 3.5em;
+    height: 3.5em;
+  }
+
   .dp {
     width: 100px;
     height: 100px;
@@ -1206,6 +1312,16 @@ a:hover {
 
   #header nav {
     padding: 0 1em;
+  }
+
+  #header #badges ul {
+    max-width: 18em;
+    gap: 0.4em;
+  }
+
+  #header #badges a {
+    width: 3em;
+    height: 3em;
   }
 
   .dp {
