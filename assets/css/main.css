@@ -883,14 +883,15 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1.25em;
-  max-width: 46em;
+  gap: 2.25em;
+  max-width: 50em;
   margin: 0 auto;
   padding: 0;
 }
 
 #header #badges li {
   display: inline-block;
+  position: relative;
 }
 
 /* Toggling display:none restarts CSS animations, so entrance
@@ -916,6 +917,8 @@ a:hover {
 }
 
 #header #badges a:hover {
+  position: relative;
+  z-index: 2;
   -moz-transform: scale(1.08);
   -webkit-transform: scale(1.08);
   -ms-transform: scale(1.08);
@@ -1248,8 +1251,8 @@ a:hover {
   }
 
   #header #badges ul {
-    max-width: 32em;
-    gap: 0.85em;
+    max-width: 36em;
+    gap: 1.5em;
   }
 
   #header #badges a {
@@ -1344,8 +1347,8 @@ a:hover {
   }
 
   #header #badges ul {
-    max-width: 22em;
-    gap: 0.6em;
+    max-width: 24em;
+    gap: 1em;
   }
 
   #header #badges a {
