@@ -484,6 +484,48 @@ a:hover {
 
 /* Header */
 
+@-moz-keyframes dp-pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@-webkit-keyframes dp-pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes dp-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
 .dp {
   width: 200px;
   height: 200px;
@@ -494,6 +536,17 @@ a:hover {
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   -ms-transition: -ms-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
+  -moz-animation: dp-pulse 1.8s ease-out 3.5s 3;
+  -webkit-animation: dp-pulse 1.8s ease-out 3.5s 3;
+  animation: dp-pulse 1.8s ease-out 3.5s 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dp {
+    -moz-animation: none;
+    -webkit-animation: none;
+    animation: none;
+  }
 }
 
 .dp:hover {
@@ -875,7 +928,7 @@ a:hover {
 }
 
 #header #badges {
-  margin: 1.5em 0 0 0;
+  margin: 0.85em 0 0 0;
 }
 
 #header #badges ul {
@@ -883,8 +936,9 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2.25em;
-  max-width: 50em;
+  column-gap: 2em;
+  row-gap: 1em;
+  max-width: 40em;
   margin: 0 auto;
   padding: 0;
 }
@@ -923,8 +977,8 @@ a:hover {
   -ms-transition: -ms-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
   display: block;
-  width: 6.5em;
-  height: 6.5em;
+  width: 5.5em;
+  height: 5.5em;
 }
 
 #header #badges a:hover {
@@ -1262,13 +1316,14 @@ a:hover {
   }
 
   #header #badges ul {
-    max-width: 36em;
-    gap: 1.5em;
+    max-width: 32em;
+    column-gap: 1.25em;
+    row-gap: 0.75em;
   }
 
   #header #badges a {
-    width: 5em;
-    height: 5em;
+    width: 4.25em;
+    height: 4.25em;
   }
 
   #header #badges li.badge-row-break {
