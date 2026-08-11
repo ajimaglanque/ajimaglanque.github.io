@@ -946,6 +946,9 @@ a:hover {
 #header #badges li {
   display: inline-block;
   position: relative;
+  width: auto;
+  height: auto;
+  line-height: normal;
 }
 
 /* Forces a line break after every 5th badge on desktop, independent of
@@ -1417,12 +1420,13 @@ a:hover {
   }
 
   #header #badges {
-    margin: 1em 0 0 0;
+    margin: 0.75em 0 0 0;
   }
 
   #header #badges ul {
-    max-width: 17.5em;
-    gap: 0.5em;
+    max-width: 16.5em;
+    column-gap: 0.5em;
+    row-gap: 0.35em;
   }
 
   #header #badges a {
