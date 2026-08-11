@@ -484,15 +484,19 @@ a:hover {
 
 /* Header */
 
+/* A single pulse (grow + fade) plays over the first 30% of the cycle;
+   the rest is a silent hold so the ring repeats every 6s instead of
+   looping back-to-back. */
 @-moz-keyframes dp-pulse {
   0% {
     -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
   }
-  70% {
+  21% {
     -moz-box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
   }
+  30%,
   100% {
     -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
@@ -504,10 +508,11 @@ a:hover {
     -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
   }
-  70% {
+  21% {
     -webkit-box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
   }
+  30%,
   100% {
     -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
@@ -518,9 +523,10 @@ a:hover {
   0% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.55);
   }
-  70% {
+  21% {
     box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
   }
+  30%,
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
@@ -536,9 +542,9 @@ a:hover {
   -webkit-transition: -webkit-transform 0.2s ease-in-out;
   -ms-transition: -ms-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
-  -moz-animation: dp-pulse 1.8s ease-out 3.5s 3;
-  -webkit-animation: dp-pulse 1.8s ease-out 3.5s 3;
-  animation: dp-pulse 1.8s ease-out 3.5s 3;
+  -moz-animation: dp-pulse 6s ease-out 3s infinite;
+  -webkit-animation: dp-pulse 6s ease-out 3s infinite;
+  animation: dp-pulse 6s ease-out 3s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
