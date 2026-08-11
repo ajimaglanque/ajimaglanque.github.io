@@ -894,6 +894,17 @@ a:hover {
   position: relative;
 }
 
+/* Forces a line break after every 5th badge on desktop, independent of
+   how many items happen to fit in max-width. Disabled at narrower
+   breakpoints so those fall back to natural wrapping. */
+#header #badges li.badge-row-break {
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
 /* Toggling display:none restarts CSS animations, so entrance
    animations meant for the initial page load are disabled here —
    otherwise every toggle click would replay a multi-second stagger. */
@@ -1260,6 +1271,10 @@ a:hover {
     height: 5em;
   }
 
+  #header #badges li.badge-row-break {
+    display: none;
+  }
+
   .dp {
     width: 100px;
     height: 100px;
@@ -1346,14 +1361,22 @@ a:hover {
     padding: 0 1em;
   }
 
+  #header #badges {
+    margin: 1em 0 0 0;
+  }
+
   #header #badges ul {
-    max-width: 24em;
-    gap: 1em;
+    max-width: 17.5em;
+    gap: 0.5em;
   }
 
   #header #badges a {
-    width: 4em;
-    height: 4em;
+    width: 5em;
+    height: 5em;
+  }
+
+  #header #badges li.badge-row-break {
+    display: none;
   }
 
   .dp {
