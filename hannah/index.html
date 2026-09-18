@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hannah</title>
+    <meta name="description" content="hannah's page — coming soon" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body class="min-vh-100 d-flex flex-column">
+    <main class="my-auto">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 section-left">
+            <p class="brand">hannah</p>
+            <h1 class="page-title">Something's coming</h1>
+
+            <div id="timer" class="cs-timer">
+              <div class="time-card">
+                <span class="time-count" id="days">00</span>
+                <span class="time-label">Days</span>
+              </div>
+              <div class="time-card">
+                <span class="time-count" id="hours">00</span>
+                <span class="time-label">Hours</span>
+              </div>
+              <div class="time-card">
+                <span class="time-count" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+              </div>
+              <div class="time-card">
+                <span class="time-count" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 d-none d-md-flex justify-content-center">
+            <svg
+              class="cs-illustration"
+              viewBox="0 0 400 400"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="Envelope illustration"
+            >
+              <circle cx="200" cy="200" r="170" class="cs-illustration-ring" />
+              <g class="cs-illustration-envelope">
+                <rect x="90" y="140" width="220" height="150" rx="12" />
+                <path
+                  d="M90 152 L200 235 L310 152"
+                  fill="none"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+              <circle cx="80" cy="90" r="6" class="cs-illustration-dot" />
+              <circle cx="330" cy="110" r="9" class="cs-illustration-dot" />
+              <circle cx="320" cy="310" r="5" class="cs-illustration-dot" />
+              <circle cx="70" cy="300" r="7" class="cs-illustration-dot" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-center">
+      <p class="footer-text mb-0">&copy; 2026 aji</p>
+    </footer>
+
+    <script src="js/timer.js"></script>
+  </body>
+</html>

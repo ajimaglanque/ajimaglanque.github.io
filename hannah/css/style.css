@@ -1,0 +1,117 @@
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #4c0459;
+  color: #ffffff;
+  padding-bottom: 75px;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .section-left {
+    padding: 24px 40px;
+  }
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: #ff5d29;
+  margin-bottom: 12px;
+}
+
+.page-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 991px) {
+  .page-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-title {
+    font-size: 26px;
+    margin-bottom: 36px;
+  }
+}
+
+.cs-timer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.cs-timer .time-card {
+  text-align: center;
+}
+
+.cs-timer .time-count {
+  display: block;
+  font-size: 64px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+@media (max-width: 991px) {
+  .cs-timer .time-count {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .cs-timer .time-count {
+    font-size: 28px;
+  }
+}
+
+.cs-timer .time-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 767px) {
+  .cs-timer .time-label {
+    font-size: 11px;
+  }
+}
+
+.cs-illustration {
+  width: 100%;
+  max-width: 340px;
+}
+
+.cs-illustration-ring {
+  fill: rgba(255, 255, 255, 0.06);
+}
+
+.cs-illustration-envelope rect {
+  fill: #ffffff;
+}
+
+.cs-illustration-envelope path {
+  stroke: #4c0459;
+}
+
+.cs-illustration-dot {
+  fill: #ff5d29;
+}
+
+.footer-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
