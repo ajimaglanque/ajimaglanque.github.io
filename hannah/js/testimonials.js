@@ -1,0 +1,196 @@
+/*
+ * Pulls testimonial rows from a Google Sheet (populated by a linked
+ * Google Form) and renders them into the marquee on reveal.html.
+ *
+ * SETUP: see hannah/REVEAL-GUIDE.md — you need to fill in SHEET_ID
+ * below, and check that COLS matches your form's field order.
+ *
+ * Fetching Google Sheets data with fetch()/XHR fails cross-origin
+ * (Google doesn't send CORS headers for it), so this uses the old
+ * JSONP trick instead: load the sheet's data endpoint as a <script>
+ * tag with a callback name, which isn't subject to CORS at all.
+ */
+(function () {
+  var CONFIG = {
+    // From the sheet's URL: https://docs.google.com/spreadsheets/d/THIS_PART/edit
+    SHEET_ID: "1VAImZVWLy5G3SR0mGITXr2aQn3diqK8FF40Hp8ZlJbA",
+
+    // The tab name holding form responses. Google Forms creates this
+    // automatically — check the tab label at the bottom of the sheet.
+    SHEET_NAME: "Form Responses 1",
+
+    // 0-indexed columns. Column 0 is always "Timestamp" (Google Forms
+    // adds it automatically). Columns 1+ follow the order your form
+    // questions are in. Adjust if your form order differs.
+    COLS: {
+      question1: 1,
+      question2: 2,
+      handle: 3,
+    },
+
+    // Re-fetch periodically so new form submissions show up without a
+    // page reload, while someone's looking at it. Set to 0 to disable.
+    REFRESH_MS: 5 * 60 * 1000,
+
+    // Cards look sparse if there are only 1-2 real responses; repeat
+    // the set until it reaches this many before it's duplicated again
+    // for the seamless scroll loop.
+    MIN_CARDS_PER_ROW: 5,
+  };
+
+  var AVATAR_COLORS = [
+    "#ff5d29",
+    "#7c3aed",
+    "#0ea5a3",
+    "#eab308",
+    "#ec4899",
+    "#22c55e",
+    "#3b82f6",
+    "#f97316",
+  ];
+
+  function initials(handle) {
+    var clean = String(handle || "").replace(/^[@\s]+/, "");
+    var parts = clean.split(/[\s_.-]+/).filter(Boolean);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+    return clean.slice(0, 2).toUpperCase() || "?";
+  }
+
+  function colorFor(index) {
+    return AVATAR_COLORS[index % AVATAR_COLORS.length];
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = String(str == null ? "" : str);
+    return div.innerHTML;
+  }
+
+  function cardHtml(item, index) {
+    return (
+      '<li class="quote-card">' +
+      '<span class="quote-mark">&#8220;</span>' +
+      '<p class="quote-text">' +
+      escapeHtml(item.question1) +
+      "</p>" +
+      '<p class="quote-text quote-text--secondary">' +
+      escapeHtml(item.question2) +
+      "</p>" +
+      '<div class="quote-author">' +
+      '<span class="quote-avatar" style="background: ' +
+      colorFor(index) +
+      '">' +
+      escapeHtml(initials(item.handle)) +
+      "</span>" +
+      '<span class="quote-name">' +
+      escapeHtml(item.handle) +
+      "</span>" +
+      "</div>" +
+      "</li>"
+    );
+  }
+
+  function padToMinimum(items, minCount) {
+    if (items.length === 0) return items;
+    var out = items.slice();
+    var i = 0;
+    while (out.length < minCount) {
+      out.push(items[i % items.length]);
+      i++;
+    }
+    return out;
+  }
+
+  function renderRow(items, trackId, dupTrackId) {
+    var track = document.getElementById(trackId);
+    var dupTrack = document.getElementById(dupTrackId);
+    if (!track || !dupTrack || items.length === 0) return;
+
+    var padded = padToMinimum(items, CONFIG.MIN_CARDS_PER_ROW);
+    var html = padded.map(cardHtml).join("");
+    track.innerHTML = html;
+    dupTrack.innerHTML = html;
+  }
+
+  function render(items) {
+    if (!items || items.length === 0) return; // keep fallback placeholders
+
+    var rowA = [];
+    var rowB = [];
+    items.forEach(function (item, i) {
+      (i % 2 === 0 ? rowA : rowB).push(item);
+    });
+
+    renderRow(rowA, "track-a-1", "track-a-2");
+    renderRow(rowB.length ? rowB : rowA, "track-b-1", "track-b-2");
+  }
+
+  function parseGvizTable(table) {
+    var rows = (table && table.rows) || [];
+    var items = [];
+
+    rows.forEach(function (row) {
+      var cells = row.c || [];
+      var get = function (idx) {
+        var cell = cells[idx];
+        return cell && cell.v != null ? String(cell.v).trim() : "";
+      };
+
+      var question1 = get(CONFIG.COLS.question1);
+      var question2 = get(CONFIG.COLS.question2);
+      var handle = get(CONFIG.COLS.handle);
+
+      if (question1 || question2 || handle) {
+        items.push({
+          question1: question1,
+          question2: question2,
+          handle: handle || "anonymous",
+        });
+      }
+    });
+
+    return items;
+  }
+
+  function fetchTestimonials() {
+    if (!CONFIG.SHEET_ID || CONFIG.SHEET_ID === "PASTE_YOUR_SHEET_ID_HERE") {
+      return; // not configured yet — leave the fallback placeholders
+    }
+
+    var callbackName = "__testimonialsJsonpCallback";
+    var script = document.createElement("script");
+
+    window[callbackName] = function (response) {
+      try {
+        var items = parseGvizTable(response && response.table);
+        render(items);
+      } catch (err) {
+        console.warn("testimonials: failed to parse sheet response", err);
+      }
+      script.remove();
+      delete window[callbackName];
+    };
+
+    var url =
+      "https://docs.google.com/spreadsheets/d/" +
+      encodeURIComponent(CONFIG.SHEET_ID) +
+      "/gviz/tq?tqx=out:json;responseHandler:" +
+      callbackName +
+      "&sheet=" +
+      encodeURIComponent(CONFIG.SHEET_NAME);
+
+    script.src = url;
+    script.onerror = function () {
+      console.warn("testimonials: could not load the Google Sheet");
+      delete window[callbackName];
+    };
+    document.body.appendChild(script);
+  }
+
+  fetchTestimonials();
+  if (CONFIG.REFRESH_MS > 0) {
+    setInterval(fetchTestimonials, CONFIG.REFRESH_MS);
+  }
+})();
