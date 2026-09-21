@@ -68,16 +68,33 @@
     return div.innerHTML;
   }
 
+  // Filled in from the sheet's own column headers once a fetch succeeds
+  // (Google Forms uses the exact question text as the header), so the
+  // real question wording never has to be typed in here by hand.
+  var questionLabels = {
+    question1: "Question 1",
+    question2: "Question 2",
+  };
+
+  function qaHtml(label, answer) {
+    if (!answer) return "";
+    return (
+      '<div class="quote-qa">' +
+      '<span class="quote-question">' +
+      escapeHtml(label) +
+      "</span>" +
+      '<p class="quote-answer">' +
+      escapeHtml(answer) +
+      "</p>" +
+      "</div>"
+    );
+  }
+
   function cardHtml(item, index) {
     return (
       '<li class="quote-card">' +
-      '<span class="quote-mark">&#8220;</span>' +
-      '<p class="quote-text">' +
-      escapeHtml(item.question1) +
-      "</p>" +
-      '<p class="quote-text quote-text--secondary">' +
-      escapeHtml(item.question2) +
-      "</p>" +
+      qaHtml(questionLabels.question1, item.question1) +
+      qaHtml(questionLabels.question2, item.question2) +
       '<div class="quote-author">' +
       '<span class="quote-avatar" style="background: ' +
       colorFor(index) +
@@ -128,8 +145,14 @@
   }
 
   function parseGvizTable(table) {
+    var cols = (table && table.cols) || [];
     var rows = (table && table.rows) || [];
     var items = [];
+
+    var label1 = cols[CONFIG.COLS.question1] && cols[CONFIG.COLS.question1].label;
+    var label2 = cols[CONFIG.COLS.question2] && cols[CONFIG.COLS.question2].label;
+    if (label1) questionLabels.question1 = label1;
+    if (label2) questionLabels.question2 = label2;
 
     rows.forEach(function (row) {
       var cells = row.c || [];

@@ -22,7 +22,7 @@
       </div>
 
       <!-- EDIT ME: your big reveal headline -->
-      <h1 class="reveal-title">we're live!</h1>
+      <h1 class="reveal-title">happy birthday, hannah/teacher q!</h1>
       <p class="reveal-subtitle">
         thank you for waiting — here's what everyone's been saying.
       </p>
@@ -30,18 +30,23 @@
       <!-- The cards below are a FALLBACK only. If js/testimonials.js
            successfully fetches responses from the Google Sheet, it
            replaces the contents of all four <ul id="track-*"> lists
-           below with real data. If the fetch fails (or hasn't been
-           configured yet), these placeholders stay put so the page
-           never looks broken. See hannah/REVEAL-GUIDE.md. -->
+           below with real data (including the question labels, pulled
+           from the sheet's own column headers). If the fetch fails (or
+           hasn't been configured yet), these placeholders stay put so
+           the page never looks broken. See hannah/REVEAL-GUIDE.md. -->
       <div class="marquee">
         <div class="marquee-row marquee-row--left">
+          <div class="marquee-track-group">
           <ul class="marquee-track" id="track-a-1">
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">Placeholder answer to question 1.</p>
-              <p class="quote-text quote-text--secondary">
-                Placeholder answer to question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Placeholder answer to question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Placeholder answer to question 2.</p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #ff5d29"
                   >AB</span
@@ -50,11 +55,14 @@
               </div>
             </li>
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">Another placeholder for question 1.</p>
-              <p class="quote-text quote-text--secondary">
-                Another placeholder for question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Another placeholder for question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Another placeholder for question 2.</p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #7c3aed"
                   >CD</span
@@ -65,11 +73,14 @@
           </ul>
           <ul class="marquee-track" id="track-a-2" aria-hidden="true">
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">Placeholder answer to question 1.</p>
-              <p class="quote-text quote-text--secondary">
-                Placeholder answer to question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Placeholder answer to question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Placeholder answer to question 2.</p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #ff5d29"
                   >AB</span
@@ -78,11 +89,14 @@
               </div>
             </li>
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">Another placeholder for question 1.</p>
-              <p class="quote-text quote-text--secondary">
-                Another placeholder for question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Another placeholder for question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Another placeholder for question 2.</p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #7c3aed"
                   >CD</span
@@ -91,18 +105,25 @@
               </div>
             </li>
           </ul>
+          </div>
         </div>
 
         <div class="marquee-row marquee-row--right">
+          <div class="marquee-track-group">
           <ul class="marquee-track" id="track-b-1">
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">
-                Second row placeholder answer to question 1.
-              </p>
-              <p class="quote-text quote-text--secondary">
-                Second row placeholder answer to question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 1.
+                </p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 2.
+                </p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #0ea5a3"
                   >EF</span
@@ -111,11 +132,16 @@
               </div>
             </li>
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">This row scrolls the other way.</p>
-              <p class="quote-text quote-text--secondary">
-                Replace all of these once the sheet is connected.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">This row scrolls the other way.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Replace all of these once the sheet is connected.
+                </p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #eab308"
                   >GH</span
@@ -126,13 +152,18 @@
           </ul>
           <ul class="marquee-track" id="track-b-2" aria-hidden="true">
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">
-                Second row placeholder answer to question 1.
-              </p>
-              <p class="quote-text quote-text--secondary">
-                Second row placeholder answer to question 2.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 1.
+                </p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 2.
+                </p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #0ea5a3"
                   >EF</span
@@ -141,11 +172,16 @@
               </div>
             </li>
             <li class="quote-card">
-              <span class="quote-mark">&#8220;</span>
-              <p class="quote-text">This row scrolls the other way.</p>
-              <p class="quote-text quote-text--secondary">
-                Replace all of these once the sheet is connected.
-              </p>
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">This row scrolls the other way.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Replace all of these once the sheet is connected.
+                </p>
+              </div>
               <div class="quote-author">
                 <span class="quote-avatar" style="background: #eab308"
                   >GH</span
@@ -154,6 +190,7 @@
               </div>
             </li>
           </ul>
+          </div>
         </div>
       </div>
     </main>

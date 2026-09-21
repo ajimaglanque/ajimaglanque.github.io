@@ -92,22 +92,32 @@ body {
   overflow: hidden;
 }
 
+/* The row's two <ul class="marquee-track"> (a real list + an
+   aria-hidden duplicate) must sit side by side as ONE continuous
+   strip for the translateX(-50%) loop below to work — this wrapper
+   is what makes that happen and what actually animates. */
+.marquee-track-group {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-row--right .marquee-track-group {
+  animation-direction: reverse;
+}
+
+.marquee-row:hover .marquee-track-group {
+  animation-play-state: paused;
+}
+
 .marquee-track {
   display: flex;
   gap: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
-  width: max-content;
-  animation: marquee-scroll 40s linear infinite;
-}
-
-.marquee-row--right .marquee-track {
-  animation-direction: reverse;
-}
-
-.marquee-row:hover .marquee-track {
-  animation-play-state: paused;
+  flex: 0 0 auto;
 }
 
 @keyframes marquee-scroll {
@@ -129,29 +139,29 @@ body {
   text-align: left;
 }
 
-.quote-mark {
-  display: block;
-  font-size: 32px;
-  font-weight: bold;
-  color: #ff5d29;
-  line-height: 1;
-  margin-bottom: 8px;
+.quote-qa {
+  margin-bottom: 16px;
 }
 
-.quote-text {
+.quote-question {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ff5d29;
+  margin-bottom: 4px;
+}
+
+.quote-answer {
   font-size: 15px;
   line-height: 1.5;
-  margin: 0 0 12px;
+  margin: 0;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.quote-text--secondary {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0 0 20px;
-}
-
 .quote-author {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -171,7 +181,6 @@ body {
 }
 
 .quote-name {
-  display: block;
   font-size: 14px;
   font-weight: bold;
 }
