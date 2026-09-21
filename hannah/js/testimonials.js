@@ -120,15 +120,36 @@
     return out;
   }
 
+  // Swapping a row's HTML while its CSS scroll animation is mid-flight
+  // makes the content visibly jump/cut, since the animation keeps
+  // running against a box that just changed size underneath it. This
+  // restarts the animation cleanly from 0% right after new content is
+  // in place, and is also why we skip the swap entirely below when the
+  // data hasn't actually changed (e.g. on the periodic re-fetch).
+  function restartAnimation(track) {
+    var group = track.closest(".marquee-track-group");
+    if (!group) return;
+    group.style.animation = "none";
+    void group.offsetWidth; // force reflow so the "none" actually applies
+    group.style.animation = "";
+  }
+
+  var lastRendered = {};
+
   function renderRow(items, trackId, dupTrackId) {
     var track = document.getElementById(trackId);
     var dupTrack = document.getElementById(dupTrackId);
     if (!track || !dupTrack || items.length === 0) return;
 
     var padded = padToMinimum(items, CONFIG.MIN_CARDS_PER_ROW);
+    var signature = JSON.stringify(padded);
+    if (lastRendered[trackId] === signature) return; // no real change
+    lastRendered[trackId] = signature;
+
     var html = padded.map(cardHtml).join("");
     track.innerHTML = html;
     dupTrack.innerHTML = html;
+    restartAnimation(track);
   }
 
   function render(items) {
