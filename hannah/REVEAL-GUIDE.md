@@ -70,41 +70,60 @@ Once it's confirmed working, it needs no further attention — the page automati
 
 A note on volume: with only a couple of real responses, the two rows will look repetitive (the same 1-2 cards looping past repeatedly) — that's expected, and fills in naturally as more responses come in.
 
-## 4. Go live on September 28
+## 4. Going live on September 28 — automatic
 
-When you're ready (on the day, or whenever you decide to flip the switch), from the repo root:
+This part is now handled by `.github/workflows/hannah-reveal.yml`, so **you don't need to do anything on the day**. Here's how it works:
 
-```bash
-cd /Users/ajimaglanque/Documents/playground/ajimaglanque.github.io
-cp hannah/reveal.html hannah/index.html
-git add hannah/index.html
-git commit -m "reveal: hannah page is live"
-git push
-```
+- It's scheduled to fire at 16:00 UTC on September 27, which is **midnight Philippine Time on September 28** — the reveal moment.
+- It performs a **literal swap**, not a one-way copy: `hannah/index.html` and `hannah/reveal.html` trade contents. So afterwards, the reveal page is live at `/hannah/` (what visitors see), and the countdown page you're retiring is preserved at `/hannah/reveal.html` instead of being lost.
+- It commits and pushes that swap automatically, which triggers your existing deploy (FTP sync + GitHub Pages) exactly like a manual push would.
+- It's idempotent: it checks whether `hannah/index.html` still looks like the countdown page (looking for `id="timer"`) before doing anything. If the swap already happened, it skips — so there's no risk of it firing twice, or of it flipping things back and forth if this same calendar date is ever reached again in a future year.
 
-That's it — `index.html` is what the root `/hannah/` URL serves, so this swap is the entire "go live" action. GitHub Pages will rebuild automatically (usually under a minute; check the Actions tab on GitHub if you want to watch it happen).
+**To test it beforehand without actually going live:** go to the repo's **Actions** tab on GitHub → **Hannah page reveal swap** → **Run workflow**. Leave **dry run** checked (it's the default) and run it — it'll perform the swap inside that run only, log what changed, and stop before committing or pushing anything. Your live site is untouched either way. Only if you ever need to trigger the *real* swap manually (e.g. the scheduled run somehow didn't fire) would you uncheck dry run before running it.
 
-### If you changed `reveal.css` after copying it once
+### If you changed `reveal.css` (or added other new assets) before the swap
 
-Browsers cache CSS aggressively (we hit this exact issue on the main `aji` page earlier). If you edit `hannah/css/reveal.css` post-launch and the changes don't seem to show up for visitors, add a cache-busting version to the link tag in `hannah/index.html`:
+Browsers cache CSS aggressively (we hit this exact issue on the main `aji` page earlier). If you edit `hannah/css/reveal.css` and changes don't seem to show up for visitors after the swap, add a cache-busting version to its link tag in whichever file references it:
 
 ```html
 <link rel="stylesheet" href="css/reveal.css?v=2" />
 ```
 
-Bump the number each time you change that file after it's live.
+Bump the number each time you change that file.
 
 ## 5. If you need to undo it
 
-The old countdown page isn't deleted — it's still in git history. To restore it:
+Because the swap is literal (not an overwrite), undoing it is just running the same swap again — `mv`-ing the two files' contents back:
 
 ```bash
-git log --oneline -- hannah/index.html   # find the commit before your swap
-git checkout <that-commit-hash> -- hannah/index.html
+cd /Users/ajimaglanque/Documents/playground/ajimaglanque.github.io
+mv hannah/index.html hannah/__swap_tmp.html
+mv hannah/reveal.html hannah/index.html
+mv hannah/__swap_tmp.html hannah/reveal.html
+git add hannah/index.html hannah/reveal.html
 git commit -m "revert: restore countdown page"
 git push
 ```
 
-## Optional: making it automatic instead
+Everything is also still in git history regardless, if you'd rather restore from a specific commit instead:
 
-You asked for a guide to execute this yourself, so the above is the manual, no-surprises path — you control the exact moment it goes live. If you'd rather it flip automatically at midnight on September 28 with no action from you, that's also possible (either a small script that compares the visitor's clock to the date, or a scheduled GitHub Action that does the same file swap and pushes on a cron trigger). Ask if you want that built instead of, or in addition to, the manual path.
+```bash
+git log --oneline -- hannah/index.html   # find the commit before the swap
+git checkout <that-commit-hash> -- hannah/index.html hannah/reveal.html
+git commit -m "revert: restore countdown page"
+git push
+```
+
+## Doing it manually instead, if you ever want to
+
+If you'd rather trigger the swap yourself at a specific moment rather than rely on the schedule, it's the exact same commands as the workflow runs — from the repo root:
+
+```bash
+cd /Users/ajimaglanque/Documents/playground/ajimaglanque.github.io
+mv hannah/index.html hannah/__swap_tmp.html
+mv hannah/reveal.html hannah/index.html
+mv hannah/__swap_tmp.html hannah/reveal.html
+git add hannah/index.html hannah/reveal.html
+git commit -m "reveal: hannah page is live"
+git push
+```

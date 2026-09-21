@@ -1,0 +1,69 @@
+name: Hannah page reveal swap
+
+# Fires at 16:00 UTC on Sept 27, which is midnight Philippine Time
+# (UTC+8) on Sept 28 — the intended reveal moment. Swaps the contents
+# of hannah/index.html and hannah/reveal.html (a literal swap, not a
+# one-way overwrite: the countdown page ends up preserved at
+# hannah/reveal.html instead of being lost).
+#
+# Safe to leave in the repo afterwards: the "already swapped?" guard
+# below makes every run after the first a no-op, including if this
+# same cron date ever recurs in a future year.
+#
+# To test ahead of time without actually flipping the live page, run
+# this manually from the Actions tab with dry_run left at its default
+# (true) — it'll log what it would do without committing anything.
+
+on:
+  schedule:
+    - cron: "0 16 27 9 *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (log the swap without committing/pushing)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  swap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v4
+
+      - name: Swap hannah/index.html and hannah/reveal.html
+        id: swap
+        run: |
+          set -e
+
+          if ! grep -q 'id="timer"' hannah/index.html; then
+            echo "hannah/index.html is no longer the countdown page — swap already done (or nothing to swap). Skipping."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          mv hannah/index.html hannah/__swap_tmp.html
+          mv hannah/reveal.html hannah/index.html
+          mv hannah/__swap_tmp.html hannah/reveal.html
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Show what changed
+        if: steps.swap.outputs.changed == 'true'
+        run: git status --short
+
+      - name: Commit and push
+        if: steps.swap.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add hannah/index.html hannah/reveal.html
+          git commit -m "reveal: hannah page is live (automated swap)"
+          git push
+
+      - name: Dry run notice
+        if: steps.swap.outputs.changed == 'true' && github.event.inputs.dry_run == 'true'
+        run: echo "Dry run — the swap above was made in the workflow's checkout only and was not committed or pushed."
