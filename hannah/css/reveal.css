@@ -107,7 +107,18 @@ body {
   animation-direction: reverse;
 }
 
-.marquee-row:hover .marquee-track-group {
+/* Scoped to real hover-capable pointers (a mouse) so this never
+   engages on touchscreens — touch taps fire compatibility mouse
+   events afterward, which can leave :hover "stuck" matched until
+   something else is tapped. Touch gets its own handling below via
+   the is-touched class instead, toggled by hannah/js/marquee-touch.js. */
+@media (hover: hover) {
+  .marquee-row:hover .marquee-track-group {
+    animation-play-state: paused;
+  }
+}
+
+.marquee-row.is-touched .marquee-track-group {
   animation-play-state: paused;
 }
 
