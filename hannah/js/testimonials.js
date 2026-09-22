@@ -38,15 +38,18 @@
     MIN_CARDS_PER_ROW: 5,
   };
 
+  // Darkened from the original brand palette so white avatar initials
+  // hit at least 4.5:1 contrast (WCAG AA) against each — several of the
+  // originals (esp. the yellow/green) were as low as ~1.9:1 to ~3:1.
   var AVATAR_COLORS = [
-    "#ff5d29",
+    "#cc4a21",
     "#7c3aed",
-    "#0ea5a3",
-    "#eab308",
-    "#ec4899",
-    "#22c55e",
-    "#3b82f6",
-    "#f97316",
+    "#0b8482",
+    "#937105",
+    "#cd3f85",
+    "#178841",
+    "#3574db",
+    "#c05911",
   ];
 
   function initials(handle) {
