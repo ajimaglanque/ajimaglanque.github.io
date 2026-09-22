@@ -1,0 +1,18 @@
+# Scoped to this directory only (not the whole site) — these headers
+# only apply to requests under /hannah/. GitHub Pages can't serve
+# custom HTTP headers at all, which is why these same protections
+# couldn't be added there; this file only takes effect on the
+# x10hosting (Apache) deploy at ajiporter.apps.dj/hannah/.
+#
+# See hannah/REVEAL-GUIDE.md for what each header does and why the
+# values were chosen this way (in particular: why style-src needs
+# 'unsafe-inline', and why Trusted Types isn't enabled here).
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; frame-ancestors 'self'; script-src 'self' https://docs.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://open.spotify.com; connect-src 'self'"
+</IfModule>
