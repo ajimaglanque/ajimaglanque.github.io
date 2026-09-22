@@ -41,6 +41,8 @@ There's a Spotify embed placeholder right under the subtitle in `hannah/reveal.h
 2. That gives you a URL like `https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=...`. Take just the part between `/playlist/` and the `?` — that's the playlist ID.
 3. In `hannah/reveal.html`, find the `<iframe>` with `PASTE_YOUR_PLAYLIST_ID_HERE` in its `src` and replace just that part with your ID.
 
+**Important — the playlist itself needs to be public, separately from the embed code.** If it's set to private, the embed only shows a playable widget to people logged into an account with access (which is why it may look fine when *you* check it, but shows "Page not found" to anyone else — including me testing it). In Spotify, that's the playlist's own **•••** menu → **Make public** (or the equivalent toggle in playlist settings). Since you're already planning to flip this at the same time as the reveal on the 28th, just make sure it's part of that day's checklist alongside the swap — worth a quick check in an incognito window (or someone else's phone) afterward to confirm it actually shows for visitors who aren't you.
+
 That's it — no API key or auth needed, since this is a public embed. It'll show Spotify's standard player: cover art, track list, and a play button (playback previews from Spotify's own widget; a full song requires the visitor to be logged into Spotify, same as any embed elsewhere on the web). If you'd rather it not autoplay or want a different look, Spotify's embed supports a `theme=0` (dark, already set) or `theme=1` in the query string, and the iframe `height` attribute controls compact (152px, current) vs. full track-list view (352px).
 
 ## 4. Connect the Google Form + Sheet

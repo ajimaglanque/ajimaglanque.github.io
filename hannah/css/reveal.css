@@ -69,7 +69,7 @@ body {
 .spotify-embed {
   width: 100%;
   max-width: 500px;
-  margin: -24px 0 40px;
+  margin: -24px 0 72px;
 }
 
 .spotify-embed iframe {
