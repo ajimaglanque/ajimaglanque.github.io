@@ -2,6 +2,19 @@
   box-sizing: border-box;
 }
 
+/* Self-hosted instead of linking fonts.googleapis.com — that was two
+   extra cross-origin round trips (CSS fetch + font fetch) sitting in
+   the render-blocking critical path, one of which alone took over a
+   second in testing. font-display: swap still avoids invisible text
+   while this loads. */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/karla.woff2") format("woff2");
+}
+
 body {
   margin: 0;
   font-family: "Karla", sans-serif;
@@ -70,13 +83,20 @@ body {
   width: 100%;
   max-width: 500px;
   height: 152px;
+  overflow: hidden;
   margin: -24px 0 72px;
 }
 
+/* !important because Spotify's own embed script sets an inline height
+   on the iframe once its player app finishes loading — a plain rule
+   here would just get overridden by that, letting it resize the box
+   after the fact and shift everything below it (confirmed by CLS only
+   dropping slightly, not to ~0, after the first attempt at this). An
+   inline style is the one thing a stylesheet needs !important to beat. */
 .spotify-embed iframe {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 100% !important;
 }
 
 .marquee {
