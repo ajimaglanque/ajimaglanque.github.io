@@ -66,6 +66,17 @@ body {
   max-width: 32em;
 }
 
+.spotify-embed {
+  width: 100%;
+  max-width: 500px;
+  margin: -24px 0 40px;
+}
+
+.spotify-embed iframe {
+  display: block;
+  width: 100%;
+}
+
 .marquee {
   width: 100%;
   max-width: 1100px;

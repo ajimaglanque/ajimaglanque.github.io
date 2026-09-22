@@ -33,7 +33,17 @@ The quote cards themselves are no longer edited by hand — see the next section
 
 Colors, card width, and scroll speed live in `hannah/css/reveal.css` if you want to tweak the look (`animation: marquee-scroll 40s ...` — lower the seconds to scroll faster).
 
-## 3. Connect the Google Form + Sheet
+## 3. Add the Spotify playlist
+
+There's a Spotify embed placeholder right under the subtitle in `hannah/reveal.html`, using Spotify's own official embed widget (the same mechanism as embedding a YouTube video — nothing homemade here).
+
+1. In the Spotify app or open.spotify.com, open the playlist you want, click **•••** (or right-click it) → **Share** → **Copy link to playlist**.
+2. That gives you a URL like `https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=...`. Take just the part between `/playlist/` and the `?` — that's the playlist ID.
+3. In `hannah/reveal.html`, find the `<iframe>` with `PASTE_YOUR_PLAYLIST_ID_HERE` in its `src` and replace just that part with your ID.
+
+That's it — no API key or auth needed, since this is a public embed. It'll show Spotify's standard player: cover art, track list, and a play button (playback previews from Spotify's own widget; a full song requires the visitor to be logged into Spotify, same as any embed elsewhere on the web). If you'd rather it not autoplay or want a different look, Spotify's embed supports a `theme=0` (dark, already set) or `theme=1` in the query string, and the iframe `height` attribute controls compact (152px, current) vs. full track-list view (352px).
+
+## 4. Connect the Google Form + Sheet
 
 The marquee pulls live testimonials from a Google Sheet that a Google Form writes to. Three fields: **question 1**, **question 2**, **handle/nickname**.
 
@@ -70,7 +80,7 @@ Once it's confirmed working, it needs no further attention — the page automati
 
 A note on volume: with only a couple of real responses, the two rows will look repetitive (the same 1-2 cards looping past repeatedly) — that's expected, and fills in naturally as more responses come in.
 
-## 4. Going live on September 28 — automatic
+## 5. Going live on September 28 — automatic
 
 This part is now handled by `.github/workflows/hannah-reveal.yml`, so **you don't need to do anything on the day**. Here's how it works:
 
@@ -91,7 +101,7 @@ Browsers cache CSS aggressively (we hit this exact issue on the main `aji` page 
 
 Bump the number each time you change that file.
 
-## 5. If you need to undo it
+## 6. If you need to undo it
 
 Because the swap is literal (not an overwrite), undoing it is just running the same swap again — `mv`-ing the two files' contents back:
 
