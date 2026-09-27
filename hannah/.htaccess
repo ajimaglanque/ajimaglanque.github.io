@@ -4,9 +4,14 @@
 # couldn't be added there; this file only takes effect on the
 # x10hosting (Apache) deploy at ajiporter.apps.dj/hannah/.
 #
-# See hannah/REVEAL-GUIDE.md for what each header does and why the
-# values were chosen this way (in particular: why style-src needs
-# 'unsafe-inline', and why Trusted Types isn't enabled here).
+# This one file has to cover BOTH index.html and reveal.html, since the
+# reveal swap preserves the old page (at reveal.html) rather than
+# deleting it — so their combined external dependencies all need to
+# stay allowed here indefinitely, not just whichever page is currently
+# "live". Missing this the first time broke index.html's Bootstrap/
+# Material Design Icons/Google Fonts CSS entirely (all silently
+# CSP-blocked) while reveal.html looked fine, since it was tested in
+# isolation. See hannah/REVEAL-GUIDE.md for more on each header.
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
@@ -14,5 +19,5 @@
   Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
   Header always set Strict-Transport-Security "max-age=31536000"
 
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; frame-ancestors 'self'; script-src 'self' https://docs.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://open.spotify.com; connect-src 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; frame-ancestors 'self'; script-src 'self' https://docs.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.materialdesignicons.com https://cdn.jsdelivr.net https://stackpath.bootstrapcdn.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com https://cdn.materialdesignicons.com https://cdn.jsdelivr.net; frame-src https://open.spotify.com; connect-src 'self'"
 </IfModule>
