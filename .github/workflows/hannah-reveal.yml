@@ -1,7 +1,7 @@
 name: Hannah page reveal swap
 
-# Fires at 16:00 UTC on Sept 27, which is midnight Philippine Time
-# (UTC+8) on Sept 28 — the intended reveal moment. Swaps the contents
+# Fires at 05:00 UTC on Sept 28, which is 1pm Philippine Time (UTC+8)
+# on Sept 28 — the intended reveal moment. Swaps the contents
 # of hannah/index.html and hannah/reveal.html (a literal swap, not a
 # one-way overwrite: the countdown page ends up preserved at
 # hannah/reveal.html instead of being lost).
@@ -16,7 +16,7 @@ name: Hannah page reveal swap
 
 on:
   schedule:
-    - cron: "0 16 27 9 *"
+    - cron: "0 5 28 9 *"
   workflow_dispatch:
     inputs:
       dry_run:

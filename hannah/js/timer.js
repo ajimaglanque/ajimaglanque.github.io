@@ -3,9 +3,11 @@
   var HOUR_MS = 1000 * 60 * 60;
   var MINUTE_MS = 1000 * 60;
 
-  // Defaults to 30 days from first page load — change this to a fixed
-  // launch date, e.g. new Date("2026-12-01T00:00:00").getTime()
-  var endDate = new Date("2026-09-28T00:00:00").getTime();
+  // +08:00 anchors this to Philippine Time specifically, regardless of
+  // the visitor's own device timezone — a bare "2026-09-28T13:00:00"
+  // (no offset) would instead target 1pm in each visitor's own local
+  // time, which isn't what we want here.
+  var endDate = new Date("2026-09-28T13:00:00+08:00").getTime();
 
   var daysEl = document.getElementById("days");
   var hoursEl = document.getElementById("hours");

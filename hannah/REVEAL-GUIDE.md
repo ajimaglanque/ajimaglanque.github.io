@@ -86,7 +86,7 @@ A note on volume: with only a couple of real responses, the two rows will look r
 
 This part is now handled by `.github/workflows/hannah-reveal.yml`, so **you don't need to do anything on the day**. Here's how it works:
 
-- It's scheduled to fire at 16:00 UTC on September 27, which is **midnight Philippine Time on September 28** — the reveal moment.
+- It's scheduled to fire at 05:00 UTC on September 28, which is **1pm Philippine Time on September 28** — the reveal moment.
 - It performs a **literal swap**, not a one-way copy: `hannah/index.html` and `hannah/reveal.html` trade contents. So afterwards, the reveal page is live at `/hannah/` (what visitors see), and the countdown page you're retiring is preserved at `/hannah/reveal.html` instead of being lost.
 - It commits and pushes that swap automatically, which triggers your existing deploy (FTP sync + GitHub Pages) exactly like a manual push would.
 - It's idempotent: it checks whether `hannah/index.html` still looks like the countdown page (looking for `id="timer"`) before doing anything. If the swap already happened, it skips — so there's no risk of it firing twice, or of it flipping things back and forth if this same calendar date is ever reached again in a future year.
