@@ -4,84 +4,219 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hannah</title>
-    <meta name="description" content="hannah's page — coming soon" />
+    <meta name="description" content="hannah's page" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%234c0459%22/><text x=%2216%22 y=%2222%22 font-size=%2218%22 text-anchor=%22middle%22 fill=%22%23ff5d29%22>&#9733;</text></svg>"
+    />
 
-    <link
-      href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/reveal.css" />
   </head>
 
-  <body class="min-vh-100 d-flex flex-column">
-    <main class="my-auto">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 section-left">
-            <p class="brand">hannah / teacher q,</p>
-            <h1 class="page-title">something's coming...</h1>
+  <body>
+    <main class="reveal">
+      <!-- EDIT ME: the little pill above the headline -->
+      <div class="badge-pill">
+        <span class="badge-pill-icon">&#9733;</span>
+        <span>congrats on reaching 30!</span>
+      </div>
 
-            <div id="timer" class="cs-timer">
-              <div class="time-card">
-                <span class="time-count" id="days">00</span>
-                <span class="time-label">Days</span>
+      <!-- EDIT ME: your big reveal headline -->
+      <h1 class="reveal-title">happy birthday, hannah/teacher q!</h1>
+      <p class="reveal-subtitle">
+        may you keep on blessing others with the life God has given you
+      </p>
+
+      <!-- EDIT ME: paste your playlist's ID below (open the playlist in
+           Spotify → Share → Copy link to playlist, then take the part
+           after "/playlist/" and before any "?" from the URL). See
+           hannah/REVEAL-GUIDE.md for the full walkthrough. -->
+      <div class="spotify-embed">
+        <iframe
+          title="Spotify playlist"
+          style="border-radius: 12px"
+          src="https://open.spotify.com/embed/playlist/4wiYG1ZRBly4be9zac02Hj?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          frameborder="0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- The cards below are a FALLBACK only. If js/testimonials.js
+           successfully fetches responses from the Google Sheet, it
+           replaces the contents of all four <ul id="track-*"> lists
+           below with real data (including the question labels, pulled
+           from the sheet's own column headers). If the fetch fails (or
+           hasn't been configured yet), these placeholders stay put so
+           the page never looks broken. See hannah/REVEAL-GUIDE.md. -->
+      <div class="marquee">
+        <div class="marquee-row marquee-row--left">
+          <div class="marquee-track-group">
+          <ul class="marquee-track" id="track-a-1">
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Placeholder answer to question 1.</p>
               </div>
-              <div class="time-card">
-                <span class="time-count" id="hours">00</span>
-                <span class="time-label">Hours</span>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Placeholder answer to question 2.</p>
               </div>
-              <div class="time-card">
-                <span class="time-count" id="minutes">00</span>
-                <span class="time-label">Minutes</span>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #cc4a21"
+                  >AB</span
+                >
+                <span class="quote-name">@handle_one</span>
               </div>
-              <div class="time-card">
-                <span class="time-count" id="seconds">00</span>
-                <span class="time-label">Seconds</span>
+            </li>
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Another placeholder for question 1.</p>
               </div>
-            </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Another placeholder for question 2.</p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #7c3aed"
+                  >CD</span
+                >
+                <span class="quote-name">@handle_two</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="marquee-track" id="track-a-2" aria-hidden="true">
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Placeholder answer to question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Placeholder answer to question 2.</p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #cc4a21"
+                  >AB</span
+                >
+                <span class="quote-name">@handle_one</span>
+              </div>
+            </li>
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">Another placeholder for question 1.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">Another placeholder for question 2.</p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #7c3aed"
+                  >CD</span
+                >
+                <span class="quote-name">@handle_two</span>
+              </div>
+            </li>
+          </ul>
           </div>
+        </div>
 
-          <div class="col-md-6 d-none d-md-flex justify-content-center">
-            <svg
-              class="cs-illustration"
-              viewBox="0 0 400 400"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-label="Envelope illustration"
-            >
-              <circle cx="200" cy="200" r="170" class="cs-illustration-ring" />
-              <g class="cs-illustration-envelope">
-                <rect x="90" y="140" width="220" height="150" rx="12" />
-                <path
-                  d="M90 152 L200 235 L310 152"
-                  fill="none"
-                  stroke-width="8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-              <circle cx="80" cy="90" r="6" class="cs-illustration-dot" />
-              <circle cx="330" cy="110" r="9" class="cs-illustration-dot" />
-              <circle cx="320" cy="310" r="5" class="cs-illustration-dot" />
-              <circle cx="70" cy="300" r="7" class="cs-illustration-dot" />
-            </svg>
+        <div class="marquee-row marquee-row--right">
+          <div class="marquee-track-group">
+          <ul class="marquee-track" id="track-b-1">
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 1.
+                </p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 2.
+                </p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #0b8482"
+                  >EF</span
+                >
+                <span class="quote-name">@handle_three</span>
+              </div>
+            </li>
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">This row scrolls the other way.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Replace all of these once the sheet is connected.
+                </p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #937105"
+                  >GH</span
+                >
+                <span class="quote-name">@handle_four</span>
+              </div>
+            </li>
+          </ul>
+          <ul class="marquee-track" id="track-b-2" aria-hidden="true">
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 1.
+                </p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Second row placeholder answer to question 2.
+                </p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #0b8482"
+                  >EF</span
+                >
+                <span class="quote-name">@handle_three</span>
+              </div>
+            </li>
+            <li class="quote-card">
+              <div class="quote-qa">
+                <span class="quote-question">Question 1</span>
+                <p class="quote-answer">This row scrolls the other way.</p>
+              </div>
+              <div class="quote-qa">
+                <span class="quote-question">Question 2</span>
+                <p class="quote-answer">
+                  Replace all of these once the sheet is connected.
+                </p>
+              </div>
+              <div class="quote-author">
+                <span class="quote-avatar" style="background: #937105"
+                  >GH</span
+                >
+                <span class="quote-name">@handle_four</span>
+              </div>
+            </li>
+          </ul>
           </div>
         </div>
       </div>
     </main>
 
     <footer class="text-center">
-      <p class="footer-text mb-0">&copy; 2026 aji</p>
+      <p class="footer-text">&copy; 2026 aji</p>
     </footer>
 
-    <script src="js/timer.js"></script>
+    <script src="js/testimonials.js"></script>
+    <script src="js/marquee-touch.js"></script>
   </body>
 </html>
