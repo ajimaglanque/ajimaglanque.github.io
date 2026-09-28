@@ -133,7 +133,7 @@ body {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: marquee-scroll 70s linear infinite;
+  animation: marquee-scroll 100s linear infinite;
 }
 
 .marquee-row--right .marquee-track-group {
