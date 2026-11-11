@@ -464,22 +464,22 @@ a:hover {
 
 /* Main */
 
+/* Flex column that scrolls: the header is centred with auto margins
+   while it fits, and when it is taller than the viewport it starts at
+   the top and scrolls instead of being clipped at both ends. */
 #main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   position: fixed;
   text-align: center;
   top: 0;
   width: 100%;
-}
-
-#main:before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  margin-right: 0;
-  vertical-align: middle;
-  width: 1px;
 }
 
 /* Header */
@@ -727,12 +727,13 @@ a:hover {
   -ms-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   cursor: default;
-  display: inline-block;
+  display: block;
+  flex-shrink: 0;
+  margin: auto 0;
   opacity: 0;
+  padding-top: 2em;
   position: relative;
   text-align: center;
-  top: -1em;
-  vertical-align: middle;
   width: 90%;
 }
 
@@ -944,7 +945,7 @@ a:hover {
   justify-content: center;
   column-gap: 2em;
   row-gap: 1em;
-  max-width: 40em;
+  max-width: 44em;
   margin: 0 auto;
   padding: 0;
 }
@@ -957,7 +958,7 @@ a:hover {
   line-height: normal;
 }
 
-/* Forces a line break after every 5th badge on desktop, independent of
+/* Forces a line break after every 6th badge on desktop, independent of
    how many items happen to fit in max-width. Disabled at narrower
    breakpoints so those fall back to natural wrapping. */
 #header #badges li.badge-row-break {
@@ -1037,12 +1038,11 @@ a:hover {
     rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 0.5) 75%
   );
-  bottom: 0;
   cursor: default;
+  flex-shrink: 0;
   height: 6em;
-  left: 0;
   line-height: 8em;
-  position: absolute;
+  position: relative;
   text-align: center;
   width: 100%;
 }
@@ -1421,6 +1421,13 @@ a:hover {
 
   /* Header */
 
+  /* Full width with slim side padding so four badges fit per row. */
+  #header {
+    width: 100%;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+
   #header nav {
     padding: 0 1em;
   }
@@ -1430,14 +1437,14 @@ a:hover {
   }
 
   #header #badges ul {
-    max-width: 16.5em;
-    column-gap: 0.5em;
-    row-gap: 0.35em;
+    max-width: 21em;
+    column-gap: 0.4em;
+    row-gap: 0.3em;
   }
 
   #header #badges a {
-    width: 5em;
-    height: 5em;
+    width: 4.6em;
+    height: 4.6em;
   }
 
   #header #badges li.badge-row-break {
