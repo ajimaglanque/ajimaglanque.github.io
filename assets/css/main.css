@@ -462,6 +462,27 @@ a:hover {
   width: 100%;
 }
 
+/* Bottom fade, pinned to the viewport so it doesn't scroll away. */
+#overlay:after {
+  background-image: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5) 75%
+  );
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5) 75%
+  );
+  bottom: 0;
+  content: "";
+  height: 6em;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
 /* Main */
 
 /* Flex column that scrolls: the header is centred with auto margins
@@ -1017,27 +1038,10 @@ a:hover {
 
 /* Footer */
 
+/* The footer's dark fade lives on the fixed #overlay (see #overlay:after)
+   so it stays pinned to the bottom of the screen while the footer text
+   scrolls with the page. */
 #footer {
-  background-image: -moz-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5) 75%
-  );
-  background-image: -webkit-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5) 75%
-  );
-  background-image: -ms-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5) 75%
-  );
-  background-image: linear-gradient(
-    top,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 0.5) 75%
-  );
   cursor: default;
   flex-shrink: 0;
   height: 6em;
