@@ -964,9 +964,9 @@ a:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  column-gap: 2em;
+  column-gap: 1.75em;
   row-gap: 1em;
-  max-width: 44em;
+  max-width: 48em;
   margin: 0 auto;
   padding: 0;
 }
@@ -1008,8 +1008,8 @@ a:hover {
   -ms-transition: -ms-transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out;
   display: block;
-  width: 5.5em;
-  height: 5.5em;
+  width: 6.5em;
+  height: 6.5em;
 }
 
 #header #badges a:hover {
@@ -1219,6 +1219,20 @@ a:hover {
   }
 }
 
+/* Tablet: smaller badges so six still fit per row before the break. */
+
+@media screen and (max-width: 1024px) {
+  #header #badges ul {
+    max-width: 40em;
+    column-gap: 1.25em;
+  }
+
+  #header #badges a {
+    width: 5.5em;
+    height: 5.5em;
+  }
+}
+
 /* Mobile */
 
 @media screen and (max-width: 736px) {
@@ -1328,15 +1342,16 @@ a:hover {
     font-size: 1em;
   }
 
+  /* Four per row (4 + 4 + 4) from here down. */
   #header #badges ul {
-    max-width: 32em;
-    column-gap: 1.25em;
-    row-gap: 0.75em;
+    max-width: 22em;
+    column-gap: 0.75em;
+    row-gap: 0.5em;
   }
 
   #header #badges a {
-    width: 4.25em;
-    height: 4.25em;
+    width: 4.75em;
+    height: 4.75em;
   }
 
   #header #badges li.badge-row-break {
@@ -1441,14 +1456,14 @@ a:hover {
   }
 
   #header #badges ul {
-    max-width: 21em;
-    column-gap: 0.4em;
-    row-gap: 0.3em;
+    max-width: 22.5em;
+    column-gap: 0.5em;
+    row-gap: 0.4em;
   }
 
   #header #badges a {
-    width: 4.6em;
-    height: 4.6em;
+    width: 5.25em;
+    height: 5.25em;
   }
 
   #header #badges li.badge-row-break {
