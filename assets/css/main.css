@@ -1012,7 +1012,11 @@ a:hover {
   height: 6.5em;
 }
 
+/* Badges zoom with transform only. The generic `#header nav a:hover`
+   rule bumps font-size, which would resize these em-sized links and
+   push a badge onto the next row, so font-size is pinned here. */
 #header #badges a:hover {
+  font-size: 1em;
   position: relative;
   z-index: 2;
   -moz-transform: scale(1.08);
@@ -1022,6 +1026,7 @@ a:hover {
 }
 
 #header #badges a:active {
+  font-size: 1em;
   -moz-transform: scale(0.96);
   -webkit-transform: scale(0.96);
   -ms-transform: scale(0.96);
